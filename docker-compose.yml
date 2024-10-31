@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+
+  nodeapp:
+    build: .
+    container_name: nodeapp
+    ports:
+      - "3000:3000"
+    environment:
+      MONGO_URI: mongodb://admin:admin@mongodb:27017/TCAL?authSource=admin
+    depends_on:
+      - mongodb
