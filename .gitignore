@@ -1,0 +1,34 @@
+# Node modules
+node_modules/
+
+# Fichiers de log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Dossiers de construction et de production
+dist/
+build/
+
+# Environnement local
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Cache de dépendances
+.pnpm-store/
+yarn.lock
+package-lock.json
+
+# Fichiers de cache
+.cache/
+.parcel-cache/
+.next/
+out/
+.cache-loader/
+
+# Système d'exploitation et éditeurs de texte
+.DS_Store
