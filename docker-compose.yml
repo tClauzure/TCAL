@@ -19,3 +19,4 @@ services:
       MONGO_URI: mongodb://admin:admin@mongodb:27017/TCAL?authSource=admin
     depends_on:
       - mongodb
+    command: npm run dev
