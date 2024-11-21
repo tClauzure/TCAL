@@ -1,7 +1,7 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import connectDB from './database';
-//import routes from './routes'; // Assure-toi d'importer tes routes
+import evenementsRouter from './routes/evenements';
 
 dotenv.config();
 
@@ -11,13 +11,28 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 
-// Connexion à la base de données
-connectDB();
+// Connexion à MongoDB
+const mongoUri = process.env.MONGO_URI;
+
+if (!mongoUri) {
+  throw new Error('La variable MONGO_URI est manquante dans le fichier .env');
+}
+mongoose.connect(process.env.MONGO_URI as string)
+  .then(() => console.log('Connecté à MongoDB'))
+  .catch((error) => console.log(error));
 
 // Routes
-//app.use('/api', routes); // Expose tes routes via `/api`
+app.get('/', (req, res) => {
+  res.send('Le serveur fonctionne !');
+});
+app.use('/api/evenements', evenementsRouter);
 
-// Démarrage du serveur
 app.listen(PORT, () => {
-  console.log(`Serveur démarré sur le port ${PORT}`);
+  console.log(`Serveur lancé sur le port ${PORT}`);
+});
+
+// Middleware de logging
+app.use((req, res, next) => {
+  console.log(`Requête reçue : ${req.method} ${req.url}`);
+  next();
 });

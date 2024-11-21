@@ -2,11 +2,11 @@
   "name": "tcal",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/app.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "start": "node index.js",
+    "start": "node dist/app.js",
     "dev": "ts-node-dev --respawn server/app.ts"
   },
   "repository": {
