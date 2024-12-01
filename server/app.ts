@@ -18,7 +18,12 @@ if (!mongoUri) {
   throw new Error('La variable MONGO_URI est manquante dans le fichier .env');
 }
 mongoose.connect(process.env.MONGO_URI as string)
-  .then(() => console.log('Connecté à MongoDB'))
+  .then(() => {
+    console.log('Connecté à MongoDB')
+    app.listen(PORT,() => {
+      console.log(`serveur lancé sur le port ${PORT}`)
+    });
+  })
   .catch((error) => console.log(error));
 
 // Routes
@@ -36,3 +41,5 @@ app.use((req, res, next) => {
   console.log(`Requête reçue : ${req.method} ${req.url}`);
   next();
 });
+
+export default app;
