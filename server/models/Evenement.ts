@@ -1,9 +1,10 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-interface IEvenement extends Document {
+export interface IEvenement extends Document {
   nom: string;
   description: string;
-  createur: string; 
+  createur: string;
+  date: Date;
 }
 
 // Schéma Mongoose pour la collection Evenements
@@ -20,6 +21,10 @@ const EvenementSchema: Schema = new Schema({
     type: String,
     required: true,
   },
+  date: {
+    type: Date,
+    required: true,
+  }
 });
 
 // Créer le modèle basé sur le schéma
