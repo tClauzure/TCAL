@@ -7,7 +7,7 @@ export interface IEvenement extends Document {
   date: Date;
 }
 
-// Schéma Mongoose pour la collection Evenements
+// Schéma Mongoose pour la collection Evenement
 const EvenementSchema: Schema = new Schema({
   nom: {
     type: String,
