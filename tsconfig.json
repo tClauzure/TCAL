@@ -11,6 +11,6 @@
     "resolveJsonModule": true,
     "sourceMap": true
   },
-  "include": ["server/**/*.ts", "tests/**/*.ts"],
+  "include": ["server/**/*.ts"],
   "exclude": ["node_modules"]
 }

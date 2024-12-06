@@ -1,7 +1,9 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import connectDB from './database';
-//import routes from './routes'; // Assure-toi d'importer tes routes
+import evenementsRouter from './routes/evenements';
+import bodyParser from 'body-parser';
+
 
 dotenv.config();
 
@@ -11,13 +13,31 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(express.json());
 
-// Connexion à la base de données
-connectDB();
+// Middleware de logging
+app.use((req, res, next) => {
+  console.log(`Requête reçue : ${req.method} ${req.url}`);
+  next();
+});
 
 // Routes
-//app.use('/api', routes); // Expose tes routes via `/api`
-
-// Démarrage du serveur
-app.listen(PORT, () => {
-  console.log(`Serveur démarré sur le port ${PORT}`);
+app.get('/', (req, res) => {
+  res.send('Le serveur fonctionne !');
 });
+app.use('/api/evenements', evenementsRouter);
+
+// Connexion à MongoDB
+const mongoUri = process.env.MONGO_URI;
+
+if (!mongoUri) {
+  throw new Error('La variable MONGO_URI est manquante dans le fichier .env');
+}
+mongoose.connect(mongoUri as string)
+  .then(() => {
+    console.log('Connecté à MongoDB')
+    app.listen(PORT,() => {
+      console.log(`serveur lancé sur le port ${PORT}`)
+    });
+  })
+  .catch((error) => console.log(error));
+
+export default app;

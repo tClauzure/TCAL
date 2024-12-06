@@ -1,4 +1,5 @@
 # server
+#   npm install -> npm run build -> docker-compose up --build
 #   config = Pour les fichiers de configuration (connexion MongoDB)
 #   controllers = Pour la logique des routes (ex. : utilisateurs, événements)
 #   models = Pour les schémas Mongoose (collections MongoDB)

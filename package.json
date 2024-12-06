@@ -2,11 +2,11 @@
   "name": "tcal",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/app.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "start": "node index.js",
+    "start": "node dist/app.js",
     "dev": "ts-node-dev --respawn server/app.ts"
   },
   "repository": {
@@ -32,6 +32,7 @@
     "@types/node": "^22.9.0",
     "@types/supertest": "^6.0.2",
     "jest": "^29.7.0",
+    "mongodb-memory-server": "^10.1.2",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",

@@ -1,23 +1,23 @@
-# Utilise une image Node.js de base
+# Utilise une image de Node.js
 FROM node:18
 
-# Crée et passe dans le dossier de travail
+# Crée un répertoire de travail
 WORKDIR /app
 
-# Copie les fichiers package.json et package-lock.json
+# Copie package.json et package-lock.json
 COPY package*.json ./
 
 # Installe les dépendances
 RUN npm install
 
-# Copie tout le reste des fichiers
+# Copie tous les fichiers dans le conteneur
 COPY . .
 
-# Compile les fichiers TypeScript
+# Compile TypeScript en JavaScript
 RUN npm run build
 
-# Expose le port 3000
+# Expose le port utilisé par l'application
 EXPOSE 3000
 
-# Commande de démarrage par défaut
-CMD ["npm", "run", "start"]
+# Commande pour lancer l'application compilée
+CMD ["npm", "start"]
