@@ -21,11 +21,13 @@
   "homepage": "https://github.com/tClauzure/TCAL#readme",
   "keywords": [],
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "mongoose": "^8.7.3"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/mongoose": "^5.11.97",

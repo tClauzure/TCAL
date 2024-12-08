@@ -1,14 +1,18 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import evenementsRouter from './routes/evenements';
-import annoncesRouter from './routes/annonces';
-
+import evenementsRouter from './src/routes/evenements';
+import annoncesRouter from './src/routes/annonces';
+import cors from 'cors';
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+app.use(cors({
+  origin: 'http://localhost:3000', // Adresse de votre frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Méthodes autorisées
+}));
+const PORT = process.env.BACK_PORT || 5000;
 
 // Middleware
 app.use(express.json());
