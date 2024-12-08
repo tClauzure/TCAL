@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import evenementsRouter from './routes/evenements';
-import bodyParser from 'body-parser';
+import annoncesRouter from './routes/annonces';
 
 
 dotenv.config();
@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
   res.send('Le serveur fonctionne !');
 });
 app.use('/api/evenements', evenementsRouter);
+app.use('/api/annonces', annoncesRouter);
 
 // Connexion à MongoDB
 const mongoUri = process.env.MONGO_URI;
