@@ -99,3 +99,4 @@ Bilan
 Le projet avait pour but de créer une application fonctionnelle et intuitive qui puisse répondre aux besoins des étudiants tout en permettant à l’école d’avoir un rôle de modération. L’intégration des outils modernes (Node.js, Express, MongoDB) et la rigueur des tests unitaires avec Jest avaient pour but de garantir la robustesse et la maintenabilité de la solution.
 Le projet a été l’occasion de mettre en pratique des compétences en architecture logicielle et de découvrir les défis liés au développement d’une application complète avec des technologies modernes.
 
+(lien de notre plan / carte mentale: https://coggle.it/diagram/ZwVH8_QvmfBHVQoH/t/app/67134279eee6f4dfebc32862c59cf8b79aa18bd86aba6ccbf03a3beace8b73e0 )
