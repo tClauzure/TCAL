@@ -5,20 +5,20 @@ export enum Role {
   GROUPE = 'groupe'
 }
 
-export interface IUser extends Document {
+export interface IUtilisateur extends Document {
   nom: string;
   email: string;
   password: string;
   role: Role;
 }
 
-const userSchema = new Schema<IUser>({
+const utilisateurSchema = new Schema<IUtilisateur>({
   nom: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true, match: /.+\@.+\..+/ },
   password: { type: String, required: true },
   role: { type: String, enum: [Role.ETUDIANT, Role.GROUPE], required: true },
 });
 
-const User = mongoose.model<IUser>('User', userSchema);
+const Utilisateur = mongoose.model<IUtilisateur>('Utilisateur', utilisateurSchema);
 
-export default User;
+export default Utilisateur;
