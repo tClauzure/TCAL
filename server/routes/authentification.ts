@@ -1,13 +1,13 @@
 import express, { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import User, { Role } from '../models/User';
+import User, { Role } from '../models/Utilisateur';
 
 const router = express.Router();
 
 // Inscription d'un utilisateur
 router.post('/register', async (req: Request, res: Response): Promise<any> => {
-  const { nom, email, password, role } = req.body;
+  const { nom, email, password, role, typeGroupe, nomPresident, nombreMembres } = req.body;
 
   try {
     // Vérification si l'utilisateur existe déjà
@@ -24,7 +24,10 @@ router.post('/register', async (req: Request, res: Response): Promise<any> => {
       nom,
       email,
       password: hashedPassword,
-      role
+      role,
+      typeGroupe,
+      nomPresident,
+      nombreMembres
     });
 
     await user.save();

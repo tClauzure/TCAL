@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import evenementsRouter from './routes/evenements';
 import annoncesRouter from './routes/annonces';
-
+import { authMiddleware } from './auth.middleware';
+import authRouter from './routes/authentification'
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.get('/', (req, res) => {
 });
 app.use('/api/evenements', evenementsRouter);
 app.use('/api/annonces', annoncesRouter);
+app.use('/api/auth', authRouter);
 
 // Connexion à MongoDB
 const mongoUri = process.env.MONGO_URI;
