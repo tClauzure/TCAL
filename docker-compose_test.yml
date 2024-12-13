@@ -14,7 +14,7 @@ services:
     build: .
     container_name: nodeapp
     ports:
-      - "5000:5000"
+      - "5001:5001"
     environment:
       - MONGO_URI=mongodb://admin:admin@mongodb:27017/TCAL?authSource=admin
     depends_on:
