@@ -49,4 +49,55 @@ it('devrait connecter un utilisateur enregistré', async () => {
       role: 'etudiant',
     });
   });
+
+  import User, { Role, TypeGroupe } from '../models/Utilisateur';
+
+describe('Validation du modèle Utilisateur', () => {
+  it('devrait valider un étudiant', async () => {
+    const etudiant = new User({
+      nom: 'Jean Dupont',
+      email: 'jean@example.com',
+      password: 'password123',
+      role: Role.ETUDIANT
+    });
+    await expect(etudiant.save()).resolves.not.toThrow();
+  });
+
+  it('devrait valider une association', async () => {
+    const association = new User({
+      nom: 'Association Sportive',
+      email: 'association@example.com',
+      password: 'password123',
+      role: Role.GROUPE,
+      typeGroupe: TypeGroupe.ASSOCIATION,
+      nomGerant: 'Pierre Martin',
+      nombreMembres: 20
+    });
+    await expect(association.save()).resolves.not.toThrow();
+  });
+
+  it('devrait rejeter une association sans nom de gérant', async () => {
+    const association = new User({
+      nom: 'Association Sportive',
+      email: 'association@example.com',
+      password: 'password123',
+      role: Role.GROUPE,
+      typeGroupe: TypeGroupe.ASSOCIATION,
+      nombreMembres: 20
+    });
+    await expect(association.save()).rejects.toThrow('Le nom du gérant est requis pour les associations');
+  });
+
+  it('devrait valider une école', async () => {
+    const ecole = new User({
+      nom: 'École ABC',
+      email: 'ecole@example.com',
+      password: 'password123',
+      role: Role.GROUPE,
+      typeGroupe: TypeGroupe.ECOLE
+    });
+    await expect(ecole.save()).resolves.not.toThrow();
+  });
+});
+
   

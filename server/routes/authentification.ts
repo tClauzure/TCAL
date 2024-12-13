@@ -7,7 +7,7 @@ const router = express.Router();
 
 // Inscription d'un utilisateur
 router.post('/register', async (req: Request, res: Response): Promise<any> => {
-  const { nom, email, password, role } = req.body;
+  const { nom, email, password, role, typeGroupe, nomPresident, nombreMembres } = req.body;
 
   try {
     // Vérification si l'utilisateur existe déjà
@@ -24,7 +24,10 @@ router.post('/register', async (req: Request, res: Response): Promise<any> => {
       nom,
       email,
       password: hashedPassword,
-      role
+      role,
+      typeGroupe,
+      nomPresident,
+      nombreMembres
     });
 
     await user.save();
