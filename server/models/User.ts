@@ -2,7 +2,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 export enum Role {
   ETUDIANT = 'etudiant',
-  ECOLE = 'ecole'
+  GROUPE = 'groupe'
 }
 
 export interface IUser extends Document {
@@ -16,7 +16,7 @@ const userSchema = new Schema<IUser>({
   nom: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  role: { type: String, enum: [Role.ETUDIANT, Role.ECOLE], required: true },
+  role: { type: String, enum: [Role.ETUDIANT, Role.GROUPE], required: true },
 });
 
 const User = mongoose.model<IUser>('User', userSchema);
