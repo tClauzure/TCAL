@@ -1,12 +1,23 @@
 # server
+#   Pour lancer les conteneurs aller dans la racine du projet et faites les commandes suivantes:
 #   npm install -> npm run build -> docker-compose up --build
-#   config = Pour les fichiers de configuration (connexion MongoDB)
-#   controllers = Pour la logique des routes (ex. : utilisateurs, événements)
+#   bien vérifier que le fichiers .env soit actif et que le dossier dist soit apparu apres le npm run build
+
+#   Pour l'utilisation, Après avoir lancé les conteneurs, je recommande d'utiliser postman pour tester les différentes routes.
+#   Il est possible d'utiliser les routes get pour voir les evenements et annonces avec: 
+#   http://localhost:5000/api/evenements  &&  http://localhost:5000/api/annonces
+#   Pour créer un compte utilisateur il faut utiliser la route: 
+#   http://localhost:5000/api/auth/register avec un body {"nom": "John Doe", "email": "john@example.com",  "password": "password123","role": "etudiant"}
+#   avec un utilisateur qui a le role étudiant il est possible de créer des annonces, les modifiers et les supprimer.
+#   Pour créer un evenements il faut avoir un utilisateur qui ai le role groupe lorsque c'est le cas il faut renseigner dans le body un champs supplémentaire qui est typeGroupe soit en étant association soit ecole.
+#   Utiliser la route login avec ce nouvel utilisateur pour récupérer le token de connexion.
+#   Lorsque cela est fait il est possible de créer des evenements, les modifiers et les supprimer.
+
+
 #   models = Pour les schémas Mongoose (collections MongoDB)
 #   routes = Pour définir les routes de l'API
 #   middleware = Pour les middlewares (authentification, validation)
 #   .env = Pour les variables d'environnement (ex. : URI MongoDB)
-#   server.js = Point d’entrée du serveur
 
 # client->src
 #   components = Composants réutilisables (ex. : Navbar, Card)
@@ -24,9 +35,8 @@ Contexte et objectifs
 Fonctionnalités principales
 
 Pour les étudiants :
-Création et gestion d’événements.
-Participation à des groupes d’études.
-Publication et interaction avec des petites annonces.
+Visualisation des différents evenement proposer par les associations et l'école
+création et gestion des annonces, qui peuvent etre des don (alimentaire, objet,...etc) ou des séances de travail
 
 Pour l’école (administrateur) :
 Gestion des événements et des contenus publiés sur la plateforme pour s’assurer du respect des règles.
@@ -59,9 +69,6 @@ Factory :
 
 Chain of Responsibility :
  Ce pattern a été appliqué dans la gestion des validations des données utilisateur ou des annonces avant leur insertion dans la base de données. Les middlewares établissent donc une chaîne pour traiter les requêtes. Chaque étape de validation sera isolée et pourra être réutilisée ou modifiée sans affecter les autres, garantissant ainsi une meilleure modularité.
-
-Proxy :
- Utilisé pour protéger les ressources sensibles de l’application, comme l’accès aux routes réservées à l’administrateur. Il sépare également les tests, le front et le back.
 
 State :
  Ce pattern a été employé pour gérer l’état des annonces ou des événements (par exemple, brouillon, publié, supprimé). Cela permet de simplifier la logique métier et d’assurer une transition cohérente entre les différents états possibles.

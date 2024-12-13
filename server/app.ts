@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import evenementsRouter from './routes/evenements';
 import annoncesRouter from './routes/annonces';
-import { authMiddleware } from './auth.middleware';
+import { authMiddleware } from './middlewares/auth.middleware';
 import authRouter from './routes/authentification'
 
 dotenv.config();

@@ -1,5 +1,7 @@
 import express, { Request, Response } from 'express';
 import Evenement,{IEvenement} from '../models/Evenement';
+import { authMiddleware, roleMiddleware } from '../middlewares/auth.middleware';
+import { Role } from '../models/Utilisateur';
 
 const router = express.Router();
 
@@ -14,7 +16,7 @@ router.get('/', async (req: Request, res: Response) => {
 });
 
 // Route POST pour créer un nouvel événement
-router.post('/', async (req: Request<{}, {}, IEvenement>, res: Response): Promise<any> => {
+router.post('/', authMiddleware, roleMiddleware([Role.GROUPE]), async (req: Request<{}, {}, IEvenement>, res: Response): Promise<any> => {
   try {
     const { nom, description, createur, date } = req.body;
 
@@ -43,7 +45,7 @@ router.post('/', async (req: Request<{}, {}, IEvenement>, res: Response): Promis
 });
 
 // Route PUT pour modifier un événement existant
-router.put('/:id', async (req: Request<{ id: string }, {}, Partial<IEvenement>>, res: Response): Promise<void> => {
+router.put('/:id', authMiddleware, roleMiddleware([Role.GROUPE]), async (req: Request<{ id: string }, {}, Partial<IEvenement>>, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
     const updateData = req.body;
@@ -66,7 +68,7 @@ router.put('/:id', async (req: Request<{ id: string }, {}, Partial<IEvenement>>,
 });
 
 // Route DELETE pour supprimer un événement existant
-router.delete('/:id', async (req: Request<{ id: string }>, res: Response): Promise<void> => {
+router.delete('/:id', authMiddleware, roleMiddleware([Role.GROUPE]), async (req: Request<{ id: string }>, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
 
